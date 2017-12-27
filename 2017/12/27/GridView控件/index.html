@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+  
+  
+  
+    
+  
+      <title>GridView控件 - first web subtitle</title>
+  
+  
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <link rel="stylesheet" href="/css/normalize.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/gridlex.min.css">
+<link rel="stylesheet" href="/css/skeleton.css">
+<link rel="stylesheet" href="/css/theme.css">
+<link rel="stylesheet" href="/css/share.min.css">
+<link rel="stylesheet" href="/css/lightgallery.css">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <header class="header">
+	<div class="header-title">
+		
+			<div class='header-text-no-image'>
+				<h1><a href="/">first web subtitle</a></h1>
+				<p><small></small></p>
+			</div>
+			
+		
+	</div>
+	<div id="header-menu-container">
+		<nav class="menu">
+	
+		
+	
+	<div class='menu-item grow'>
+		<div class='menu-icon'>
+			<a href="/archives/">
+			<img src="/images/archive.svg" alt="">
+			</a>
+		</div>
+		<div class="menu-name">
+			<a class='menu-link' href="/archives/">
+				<span>Archives</span>
+			</a>
+		</div>
+	</div>
+	
+	
+	<div class='menu-item grow'>
+		<div class='menu-icon'>
+			<a href="/search/">
+			<img src="/images/search.svg" alt="">
+			</a>
+		</div>
+		<div class="menu-name">
+			<a class='menu-link' href="/search/">
+				<span>Search</span>
+			</a>
+		</div>
+	</div>
+</nav>
+
+	</div>
+</header>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+<article class="article" id="/2017/12/27/GridView控件/" data-name='GridView控件' data-version="">
+
+    <!-- Title -->
+
+    
+        
+        
+    
+
+    <div class='article-header'>
+         
+         <h1 class='article-title'>
+            <a href="/2017/12/27/GridView控件/">
+                GridView控件
+            </a>
+        </h1>
+        
+    </div>
+   
+    <!-- Date and Author -->
+    <p>
+       	2017-12-27
+        by John Doe
+        
+    </p>
+    <p>
+        
+    </p>
+	<hr />
+
+    <!-- Gallery -->
+    
+    
+
+    <!-- Content -->
+    <div class='article-content'>
+    <h3 id="GridView控件"><a href="#GridView控件" class="headerlink" title="GridView控件"></a>GridView控件</h3><h5 id="1-简单的GridView绑定数据："><a href="#1-简单的GridView绑定数据：" class="headerlink" title="1.简单的GridView绑定数据："></a>1.简单的GridView绑定数据：</h5><p>1.添加控件GridView：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;asp:GridView ID=&quot;GridView1&quot; runat=&quot;server&quot;&gt;</span><br><span class="line">&lt;/asp:GridView&gt;</span><br></pre></td></tr></table></figure>
+<p>2.获取数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> protected void Page_Load(object sender, EventArgs e)</span><br><span class="line">&#123;</span><br><span class="line">    if (!IsPostBack)</span><br><span class="line">    &#123;</span><br><span class="line">        SqlConnection con = new SqlConnection(&quot;Data Source=localhost;Initial Catalog=db_LibraryMS;Persist Security Info=True;User ID=sa;Password=sql3999;Pooling=True&quot;);</span><br><span class="line">        SqlDataAdapter da = new SqlDataAdapter(&quot;select * from tb_bookinfo&quot;, con);</span><br><span class="line">        DataSet ds = new DataSet();</span><br><span class="line">        da.Fill(ds);</span><br><span class="line">        GridView1.DataSource = ds;</span><br><span class="line">        GridView1.DataBind();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-自定义GridView控件的列："><a href="#2-自定义GridView控件的列：" class="headerlink" title="2.自定义GridView控件的列："></a>2.自定义GridView控件的列：</h5><p>1.添加GridView控件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;asp:GridView ID=&quot;GridView1&quot; runat=&quot;server&quot; AutoGenerateColumns=&quot;False&quot; DataSourceID=&quot;SqlDataSource1&quot;&gt; </span><br><span class="line">    &lt;Columns&gt;</span><br><span class="line">         &lt;asp:BoundField DataField=&quot;bookcode&quot; HeaderText=&quot;编号&quot; ReadOnly=&quot;True&quot; ValidateRequestMode=&quot;Disabled&quot; /&gt;</span><br><span class="line">         &lt;asp:BoundField DataField=&quot;bookname&quot; HeaderText=&quot;名称&quot; ReadOnly=&quot;True&quot; /&gt;</span><br><span class="line">         &lt;asp:BoundField DataField=&quot;price&quot; HeaderText=&quot;价格&quot; ReadOnly=&quot;True&quot; /&gt;</span><br><span class="line">         &lt;asp:BoundField DataField=&quot;autor&quot; HeaderText=&quot;作者&quot; ReadOnly=&quot;True&quot; /&gt;</span><br><span class="line">     &lt;/Columns&gt;</span><br><span class="line"> &lt;/asp:GridView&gt;</span><br></pre></td></tr></table></figure>
+<p>2.添加SQLDataSource（按智能提示配置数据源）并将SQLDataSource控件指定给GridView控件的DataSourceID属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;asp:SqlDataSource ID=&quot;SqlDataSource1&quot; runat=&quot;server&quot; ConnectionString=&quot;&lt;%$ ConnectionStrings:db_LibraryMSConnectionString %&gt;&quot; SelectCommand=&quot;SELECT [bookcode], [bookname], [autor], [price] FROM [tb_bookinfo]&quot;&gt;&lt;/asp:SqlDataSource&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-使用GridView控件分页显示数据"><a href="#3-使用GridView控件分页显示数据" class="headerlink" title="3.使用GridView控件分页显示数据"></a>3.使用GridView控件分页显示数据</h4><p>1.添加GridView控件，并设置属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &lt;asp:GridView ID=&quot;GridView1&quot; runat=&quot;server&quot; AllowPaging=&quot;True&quot; PageSize=&quot;2&quot; OnSelectedIndexChanging=&quot;Page_Load&quot;</span><br><span class="line">     OnPageIndexChanging=&quot;GridView1_PageIndexChanging&quot;&gt;</span><br><span class="line">&lt;/asp:GridView&gt;</span><br></pre></td></tr></table></figure>
+<p>2.页面加载时，将数据表中的数据绑定到GridView中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">protected void Page_Load(object sender, EventArgs e)</span><br><span class="line">&#123;</span><br><span class="line">    if (!IsPostBack)</span><br><span class="line">    &#123;</span><br><span class="line">        string strCon = @&quot;Data Source=localhost;Initial Catalog=db_LibraryMS;Persist Security Info=True;User ID=sa;Password=sql3999;Pooling=True&quot;;</span><br><span class="line">        string sqlStr = &quot;select bookcode,bookname,type,autor,price from tb_bookinfo&quot;;</span><br><span class="line">        SqlConnection con = new SqlConnection(strCon);</span><br><span class="line">        SqlDataAdapter da = new SqlDataAdapter(sqlStr,con);</span><br><span class="line">        DataSet ds = new DataSet();</span><br><span class="line">        da.Fill(ds);</span><br><span class="line">        GridView1.DataSource = ds;</span><br><span class="line">        GridView1.DataKeyNames = new string[] &#123; &quot;bookcode&quot; &#125;;</span><br><span class="line">        GridView1.DataBind();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.触发GridView的PageIndexChanging翻页事件并添加代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)</span><br><span class="line">&#123;</span><br><span class="line">    GridView1.PageIndex = e.NewPageIndex;</span><br><span class="line">    GridView1.DataBind();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+    <hr />
+
+    <h2>Share and comment</h2>
+    <div class="social-share"></div>
+    
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    
+</article>
+  </div>
+
+  <footer class='footer'>
+    <div class='footer-logo'>
+        <span></span>
+    </div>
+    <div class='footer-social'>
+        
+        
+    </div>
+    <p> Copyright by <a href="">@John Doe</a> in 2017</p>
+    <p> Icons by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0</a></p>
+    <p>Theme <a href="http://qutang.github.io/2017/06/27/Hexo-theme-cutie/">Cutie</a> | Powered by <a href="http://hexo.io">Hexo.</a></p>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		<nav class="menu">
+	
+		
+	
+	<div class='menu-item grow'>
+		<div class='menu-icon'>
+			<a href="/archives/">
+			<img src="/images/archive.svg" alt="">
+			</a>
+		</div>
+		<div class="menu-name">
+			<a class='menu-link' href="/archives/">
+				<span>Archives</span>
+			</a>
+		</div>
+	</div>
+	
+	
+	<div class='menu-item grow'>
+		<div class='menu-icon'>
+			<a href="/search/">
+			<img src="/images/search.svg" alt="">
+			</a>
+		</div>
+		<div class="menu-name">
+			<a class='menu-link' href="/search/">
+				<span>Search</span>
+			</a>
+		</div>
+	</div>
+</nav>
+
+	</div>
+
+  <script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://qutang-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<script src="/js/lightgallery.min.js"></script>
+<script type='text/javascript'>
+    lightGallery(document.getElementById('lightgallery'));
+</script>
+
+<script data-no-instant type='text/javascript'>
+changeLayoutOnTouchScreen();
+setVersionForCurrentPage();
+setVersionBadgeForIndexPages();
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
